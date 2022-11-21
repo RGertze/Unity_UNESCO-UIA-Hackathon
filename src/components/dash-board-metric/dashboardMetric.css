@@ -1,0 +1,25 @@
+.metric {
+    width: 45%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.metric-img {
+    width: 120px;
+    height: 120px;
+    margin: 10px;
+}
+
+.metric-popup-container {}
+
+.metric-popup-trigger:hover+.metric-popup {
+    display: inline;
+}
+
+.metric-popup {
+    display: none;
+    position: absolute;
+    background-color: #fefefe;
+}
