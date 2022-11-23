@@ -2,9 +2,13 @@ import Axios from "axios";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+
 import InputGroup from 'react-bootstrap/InputGroup';
 
 import "./login.css";
+
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
+
 
 import ElecPic from "../dash-board-metric/elec.png";
 
@@ -35,19 +39,18 @@ export const Login = (props) => {
             return;
         }
 
-        //  When api is ready use this 
-        // -----------------------------
-        // 
-        // let result = await Axios.post("yourUrlHere", { email: email, password: password });
-        // if (result.status === 201) {
-        //     navigate("/home");
-        // }
-
         // temp logic until api is available
-        if (email !== tempUser.email || password !== tempUser.password) {
-            alert("Email or password incorrect!");
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, password)
+        .then((res) => {
+            console.log(res.user)
+        })
+        .catch((err) => {
+            alert(err.message)
+            console.log(err.code)
+            console.log(err.message)
             return;
-        }
+        })
 
         props.login(true);
 
