@@ -11,7 +11,7 @@ export const NavigationBar = (props) => {
     const navigate = useNavigate();
 
     return (
-        <Navbar style={{ marginBottom: "30px" }} className="rounded" bg="dark" expand="lg" onToggle={setToggled}>
+        <Navbar className="rounded" bg="dark" expand="lg" onToggle={setToggled}>
             <Container>
                 <Navbar.Toggle />
                 <Navbar.Brand style={{ color: "white" }}>
@@ -21,9 +21,14 @@ export const NavigationBar = (props) => {
                 <Navbar.Collapse>
                     {
                         props.loggedIn &&
-                        <Nav>
-                            <NavLink to="/home" as={Link} style={{ color: "white" }}>Home</NavLink>
-                        </Nav>
+                        <>
+                            <Nav>
+                                <NavLink to="/home" as={Link} style={{ color: "white" }}>Home</NavLink>
+                            </Nav>
+                            <Nav>
+                                <NavLink to="/announcements" as={Link} style={{ color: "white" }}>Announcements</NavLink>
+                            </Nav>
+                        </>
                     }
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
@@ -43,7 +48,7 @@ export const NavigationBar = (props) => {
                                 signOut(auth).then(() => {
                                     navigate("/");
                                 }).catch((error) => {
-                                // An error happened.
+                                    // An error happened.
                                 });
                                 navigate("/");
                             }}>Logout</Button>

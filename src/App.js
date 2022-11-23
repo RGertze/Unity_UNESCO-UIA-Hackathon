@@ -6,6 +6,7 @@ import { Login } from './components/login/login';
 import { useState } from 'react';
 import { SignUp } from './components/sign-up/signup';
 import { initializeApp } from "firebase/app";
+import { Announcements } from './components/announcements/announcements';
 
 function App() {
 
@@ -15,12 +16,15 @@ function App() {
     <BrowserRouter>
       <div className="App">
 
-        {/* <NavigationBar loggedIn={loggedIn} logout={() => setLoggedIn(false)} /> */}
+        {
+          <NavigationBar loggedIn={loggedIn} logout={() => setLoggedIn(false)} />
+        }
 
         <Routes>
           <Route path="/" element={<Login login={setLoggedIn} />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/home" element={<Dashboard />} />
+          <Route path="/announcements" element={<Announcements />} />
         </Routes>
       </div>
     </BrowserRouter>
@@ -39,3 +43,7 @@ const firebaseConfig = {
 
 export default App;
 export const app = initializeApp(firebaseConfig);
+
+
+
+
