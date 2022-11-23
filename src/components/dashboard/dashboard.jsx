@@ -4,9 +4,11 @@ import { DashboardMetric, M_Bio, M_Solar, M_Watts, EV } from "../dash-board-metr
 import { Rewards } from "../rewards/rewards";
 import "./dashboard.css";
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth'
+import { BarChartComponent } from "../bar-chart/barChart";
 
 
 //----   TEMP DATA   ----
+
 const tempData = [
     { day: "1", solarUsage: 45, electricUsage: 12, bioFuelUsage: 20 },
     { day: "2", solarUsage: 25, electricUsage: 13, bioFuelUsage: 0 },
@@ -22,6 +24,16 @@ const tempData = [
     { day: "12", solarUsage: 24, electricUsage: 10, bioFuelUsage: 20 },
     { day: "13", solarUsage: 45, electricUsage: 30, bioFuelUsage: 34 },
 ];
+
+const tempCountryREUsage = [
+    { name: "Namibia", value: 99 },
+    { name: "France", value: 80 },
+    { name: "Morocco", value: 12 },
+    { name: "Niger", value: 70 },
+    { name: "India", value: 60 },
+];
+
+//-----------------------------------
 
 const getUserName = () => {
     let currentUser = getAuth().currentUser;
@@ -42,6 +54,9 @@ export const Dashboard = (props) => {
                 <DashboardMetric title="Bio Fuel Used" unit="J/kg" value={4000} type={M_Bio} thresholds={[1000, 2000]} />
 
                 <Chart width={97} data={tempData} />
+
+                <h3 className="p-3">Renewable percentage in countries over the past 10 years:</h3>
+                <BarChartComponent width={97} data={tempCountryREUsage} />
             </div>
 
             <Rewards />
