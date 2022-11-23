@@ -5,6 +5,7 @@ import { NavigationBar } from './components/navbar/navbar';
 import { Login } from './components/login/login';
 import { useState } from 'react';
 import { SignUp } from './components/sign-up/signup';
+import { DashboardInput } from './components/dashboard_input/dashboard_input';
 import { initializeApp } from "firebase/app";
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
           <Route path="/" element={<Login login={setLoggedIn} />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/home" element={<Dashboard />} />
+          <Route path="/dashboardInput" element={<DashboardInput />} />
+
         </Routes>
       </div>
     </BrowserRouter>
