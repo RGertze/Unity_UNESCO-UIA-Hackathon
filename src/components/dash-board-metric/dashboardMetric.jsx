@@ -6,7 +6,7 @@ import SolarPic from "./solar.webp";
 import EVPic from "./ev.webp";
 import BioPic from "./bio.webp";
 import { InfoCircle } from "react-bootstrap-icons";
-import { Alert } from "react-bootstrap";
+import { Alert, ProgressBar } from "react-bootstrap";
 
 export const M_Solar = 1;
 export const M_Watts = 2;
@@ -90,6 +90,12 @@ export const DashboardMetric = (props) => {
             <div className="vert-flex space-evenly w-75">
                 <h3 style={{ color: valueColor }}><b>{props.value}</b></h3>
                 <h2>{props.unit}</h2>
+            </div>
+
+            <div style={{ width: "200px" }}>
+                <ProgressBar>
+                    <ProgressBar variant="metric-progress" now={40} key={1} />
+                </ProgressBar>
             </div>
         </div>
     )
