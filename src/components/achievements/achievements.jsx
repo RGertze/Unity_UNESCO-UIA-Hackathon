@@ -1,14 +1,15 @@
-import { convertToRaw, EditorState } from "draft-js";
-import { useState } from "react";
+import { renderToString } from 'react-dom/server'
+import { convertToRaw, EditorState, convertFromHTML, ContentState } from "draft-js";
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Editor } from "react-draft-wysiwyg";
-import { convertToHTML } from 'draft-convert';
 import draftToHtml from "draftjs-to-html";
 import DOMPurify from 'dompurify';
 
-import "./announcements.css";
+import "./achievements.css";
+import { Pencil } from 'react-bootstrap-icons';
 
-export const Announcements = (props) => {
+export const Achievements = (props) => {
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
@@ -16,15 +17,24 @@ export const Announcements = (props) => {
 
     const [posts, setPosts] = useState([]);
 
+    const [postToEdit, setPostToEdit] = useState(undefined);
+
+    useEffect(() => {
+    }, [posts]);
+
     const savePost = async () => {
-        // let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
         let currentContentAsHTML = draftToHtml(convertToRaw(editorState.getCurrentContent()));
         let html = createMarkup(currentContentAsHTML);
-        console.log(html);
 
         let newPosts = posts.splice(0);
-        newPosts.push(html);
-        setPosts(newPosts);
+
+        if (postToEdit !== undefined) {
+            newPosts[postToEdit] = html;
+        } else {
+            newPosts.push(html);
+        }
+        setPosts([...newPosts]);
+        setPostToEdit(undefined);
         setAdding(false);
         setEditorState(EditorState.createEmpty());
     }
@@ -35,17 +45,34 @@ export const Announcements = (props) => {
         }
     }
 
+    const setEditing = (post, index) => {
+
+
+        const blocks = convertFromHTML(
+            post.__html
+        );
+
+        console.log(blocks);
+
+        let newEditorState = EditorState.createWithContent(ContentState.createFromBlockArray(blocks.contentBlocks, blocks.entityMap));
+        window.scrollTo(0, 0);
+        setPostToEdit(index);
+        setAdding(true);
+        setEditorState(newEditorState);
+    }
+
+
     return (
-        <div className="announcements-page">
-            <h1 style={{ margin: "20px", marginBottom: "25px" }}>Announcements</h1>
-            <div className="announcement-btns vert-flex">
+        <div className="achievements-page">
+            <h1 style={{ margin: "20px", marginBottom: "25px" }}>achievements</h1>
+            <div className="achievement-btns vert-flex">
                 <Button variant='success' onClick={() => {
                     if (!adding)
                         setAdding(true);
                     else {
                         savePost();
                     }
-                }}>{adding ? "Save" : "New Announcement"}</Button>
+                }}>{adding ? "Save" : "New achievement"}</Button>
                 {
                     adding &&
                     <Button variant='light' onClick={() => {
@@ -56,7 +83,7 @@ export const Announcements = (props) => {
             </div>
             {
                 adding &&
-                <div className="hor-center border rounded announcements-editor">
+                <div className="hor-center border rounded achievements-editor">
                     <Editor
                         toolbarStyle={{
                             position: "sticky",
@@ -73,8 +100,13 @@ export const Announcements = (props) => {
             <div>
                 {
                     posts.map((post, index) => {
+                        console.log(post);
                         return (
-                            <div className="border hor-center rounded announcement" key={index} dangerouslySetInnerHTML={post}>
+                            <div className="border hor-center rounded achievement" key={index} >
+                                <div className='vert-flex achievement-header'>
+                                    <Pencil onClick={() => setEditing(post, index)} className='hover' width={30} height={30} />
+                                </div>
+                                <div dangerouslySetInnerHTML={post}></div>
                             </div>
                         );
                     })

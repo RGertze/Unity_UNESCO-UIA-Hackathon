@@ -6,7 +6,7 @@ import { Login } from './components/login/login';
 import { useState } from 'react';
 import { SignUp } from './components/sign-up/signup';
 import { initializeApp } from "firebase/app";
-import { Announcements } from './components/announcements/announcements';
+import { Achievements } from './components/achievements/achievements';
 
 function App() {
 
@@ -24,7 +24,7 @@ function App() {
           <Route path="/" element={<Login login={setLoggedIn} />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/home" element={<Dashboard />} />
-          <Route path="/announcements" element={<Announcements />} />
+          <Route path="/achievements" element={<Achievements />} />
         </Routes>
       </div>
     </BrowserRouter>
