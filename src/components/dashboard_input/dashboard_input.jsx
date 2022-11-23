@@ -2,7 +2,7 @@ import Axios from "axios";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { sidebar } from "../sidebar/sidebar";
+import { Sidebar } from "../sidebar/Sidebar";
 import ElecPic from "../dash-board-metric/energy.png";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 
@@ -40,7 +40,7 @@ export const DashboardInput = (props) => {
     return (
         
         <div className="vert-flex justify-center" style={{ height: "60vh", alignItems: "center" }}>
-            <sidebar />
+            <Sidebar />
             <div style={{
                 width: "70%",
                 height: "440px",
