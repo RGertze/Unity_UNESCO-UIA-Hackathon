@@ -4,6 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import ElecPic from "../dash-board-metric/energy.png";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 
 import { tempUser } from "../../temp-data/users";
 
@@ -37,6 +38,17 @@ export const SignUp = (props) => {
         //     navigate("/");
         // }
 
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((res) => {
+            console.log(res.user)
+            navigate("/");
+        })
+        .catch((err) => {
+            alert(err.message)
+            console.log(err.code)
+            console.log(err.message)
+        })
 
         // temp check until api is available
         if (email === tempUser.email) {
@@ -44,7 +56,7 @@ export const SignUp = (props) => {
             return;
         }
 
-        navigate("/");
+        
     }
 
     return (

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Navbar, Container, Nav, NavLink, Button } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
+import { getAuth, signOut } from "firebase/auth";
 
 import Logo from "./logo.jpg";
 
@@ -38,6 +39,12 @@ export const NavigationBar = (props) => {
                             props.loggedIn &&
                             <Button variant="primary" onClick={() => {
                                 props.logout();
+                                const auth = getAuth();
+                                signOut(auth).then(() => {
+                                    navigate("/");
+                                }).catch((error) => {
+                                // An error happened.
+                                });
                                 navigate("/");
                             }}>Logout</Button>
                         }
