@@ -3,15 +3,29 @@ import { Dashboard } from './components/dashboard/dashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { NavigationBar } from './components/navbar/navbar';
 import { Login } from './components/login/login';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SignUp } from './components/sign-up/signup';
 import { initializeApp } from "firebase/app";
 import { Achievements } from './components/achievements/achievements';
 import { DashboardInput } from './components/DashboardInput/DashboardInput';
 
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLoggedIn(true);
+        setUser(user);
+      }
+    });
+  }, []);
 
   return (
     <BrowserRouter>
