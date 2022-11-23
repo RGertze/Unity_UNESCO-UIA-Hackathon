@@ -16,6 +16,7 @@ import User from "./image 1.png";
 import Lock from "../login/Path 114.png";
 import Google from "../login/Group 110.png";
 import Apple from "../login/Path 115.png";
+import AppLogo from "../../assets/appLogo.png";
 
 export const SignUp = (props) => {
 
@@ -70,8 +71,8 @@ export const SignUp = (props) => {
             <div className="sign-up-form-container">
                 <div style={{
                 }} className="sign-up-form  p-3">
+                    <img className="login-bulb" src={AppLogo} alt="" />
                     <Form>
-                        <h1 className="m-3">Sign Up</h1>
                         <Form.Group style={{ marginBottom: "20px" }} className="w-75 hor-center">
                             <InputGroup>
                                 <InputGroup.Text style={{ backgroundColor: "white" }}>
