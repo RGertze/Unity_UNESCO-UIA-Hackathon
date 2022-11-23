@@ -6,12 +6,13 @@ import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import DOMPurify from 'dompurify';
 
-import { collection, addDoc, getDocs, setDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getDocs, setDoc, doc, deleteDoc } from "firebase/firestore";
 import { db } from '../../App';
 
 
 import "./achievements.css";
-import { Pencil } from 'react-bootstrap-icons';
+import { Pencil, Trash } from 'react-bootstrap-icons';
+import { async } from '@firebase/util';
 
 export const Achievements = (props) => {
 
@@ -68,7 +69,6 @@ export const Achievements = (props) => {
         let html = createMarkup(currentContentAsHTML);
 
         try {
-
             // if editing overwrite doc
             if (postToEdit !== undefined) {
                 const docRef = await setDoc(doc(db, "posts", posts[postToEdit].id), {
@@ -88,6 +88,19 @@ export const Achievements = (props) => {
             getAllPosts();
         } catch (error) {
             console.error("Error adding document: ", error);
+            alert("An error occurred");
+        }
+    }
+
+    //----   DELETE POST   ----
+    const deletePost = async (post) => {
+        try {
+            await deleteDoc(doc(db, "posts", post.id));
+            getAllPosts();
+            alert("Deleted");
+        } catch (error) {
+            console.error("Error deleting document: ", error);
+            alert("An error occurred");
         }
     }
 
@@ -134,6 +147,7 @@ export const Achievements = (props) => {
                             <div className="border hor-center rounded achievement" key={index} >
                                 <div className='vert-flex achievement-header'>
                                     <Pencil onClick={() => setEditing(post, index)} className='hover' width={30} height={30} />
+                                    <Trash style={{ marginLeft: "20px" }} onClick={() => deletePost(post)} className='hover' width={30} height={30} />
                                 </div>
                                 <div dangerouslySetInnerHTML={post}></div>
                             </div>
