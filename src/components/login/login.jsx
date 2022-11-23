@@ -43,7 +43,9 @@ export const Login = (props) => {
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
         .then((res) => {
-            console.log(res.user)
+            console.log(res.user);
+            props.login(true);
+            navigate("/home");
         })
         .catch((err) => {
             alert(err.message)
@@ -52,9 +54,9 @@ export const Login = (props) => {
             return;
         })
 
-        props.login(true);
+        
 
-        navigate("/home");
+        
     }
 
     return (
