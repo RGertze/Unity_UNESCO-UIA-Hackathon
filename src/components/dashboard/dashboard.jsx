@@ -49,7 +49,7 @@ export const Dashboard = (props) => {
 
             <div className="vert-flex  dash-metrics">
                 <DashboardMetric title="Solar Energy Used" unit="kWh" value={38} type={M_Solar} thresholds={[100, 200]} />
-                <DashboardMetric title="Electricity Used" unit="kWh" value={300} type={M_Watts} thresholds={[200, 400]} />
+                <DashboardMetric title="Electricity Used" unit="kWh" value={20} type={M_Watts} thresholds={[200, 400]} />
                 <DashboardMetric title="EV" unit="kWh" value={0} type={EV} thresholds={[200, 400]} />
                 <DashboardMetric title="Bio Fuel Used" unit="J/kg" value={4000} type={M_Bio} thresholds={[1000, 2000]} />
 
