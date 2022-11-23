@@ -1,0 +1,24 @@
+.announcements-page {
+    width: 100%;
+    min-height: 100vh;
+    height: fit-content;
+    padding: 20px;
+}
+
+.announcement-btns {
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.announcements-editor {
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fefefe;
+}
+
+.announcement {
+    width: 80%;
+    margin-bottom: 20px;
+}
