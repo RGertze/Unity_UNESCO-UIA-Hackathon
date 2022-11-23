@@ -23,3 +23,17 @@
     position: absolute;
     background-color: #fefefe;
 }
+
+.bg-metric-temp {}
+
+.bg-metric-progress-green {
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(0, 255, 0, 1) 0%, rgba(255, 255, 0, 1) 100%);
+}
+
+.bg-metric-progress-yellow {
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(255, 255, 0, 1) 0%, rgba(255, 0, 0, 1) 100%);
+}
+
+.bg-metric-progress-red {
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 1) 100%);
+}

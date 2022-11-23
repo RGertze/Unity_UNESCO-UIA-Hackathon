@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./dashboardMetric.css"
 
 import ElecPic from "./elec.png";
@@ -6,12 +6,18 @@ import SolarPic from "./solar.webp";
 import EVPic from "./ev.webp";
 import BioPic from "./bio.webp";
 import { InfoCircle } from "react-bootstrap-icons";
-import { Alert } from "react-bootstrap";
+import { Alert, ProgressBar } from "react-bootstrap";
 
 export const M_Solar = 1;
 export const M_Watts = 2;
 export const M_Bio = 3;
 export const EV = 4;
+
+function getGreenToRed(percent) {
+    let r = (percent * 255.00)
+    let g = 300 - ((percent) * 255.00);
+    return `rgb(${r},${g},0)`;
+}
 
 
 /**
@@ -34,6 +40,9 @@ export const DashboardMetric = (props) => {
 
     const [img, setImg] = useState();
     const [valueColor, setValueColor] = useState("");
+
+    const prog1 = useRef();
+    let counter = 0;
 
     useEffect(() => {
         init();
@@ -89,7 +98,17 @@ export const DashboardMetric = (props) => {
             <img className="metric-img" src={img} alt="a very important pic" />
             <div className="vert-flex space-evenly w-75">
                 <h3 style={{ color: valueColor }}><b>{props.value}</b></h3>
-                <h2>{props.unit}</h2>
+                <h2 onClick={() => {
+                    counter += 0.1;
+                    var elem = prog1.current;
+                    elem.style.background = getGreenToRed(counter);
+                }}>{props.unit}</h2>
+            </div>
+
+            <div style={{ width: "250px" }}>
+                <ProgressBar>
+                    <ProgressBar style={{ background: getGreenToRed((props.value / props.thresholds[1])) }} variant="" now={(props.value / props.thresholds[1]) * 100} key={1} />
+                </ProgressBar>
             </div>
         </div>
     )
