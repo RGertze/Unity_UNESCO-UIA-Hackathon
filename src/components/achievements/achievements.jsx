@@ -14,6 +14,23 @@ import "./achievements.css";
 import { Pencil, Trash } from 'react-bootstrap-icons';
 import { async } from '@firebase/util';
 
+import Like from "../../assets/Group 192.png";
+import Comment from "../../assets/Group 191.png";
+import Reply from "../../assets/Group 193.png";
+
+const _uploadImageCallBack = (file) => {
+    const imageObject = {
+        file: file,
+        localSrc: URL.createObjectURL(file),
+    }
+
+    return new Promise(
+        (resolve, reject) => {
+            resolve({ data: { link: imageObject.localSrc } });
+        }
+    );
+}
+
 export const Achievements = (props) => {
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -77,6 +94,7 @@ export const Achievements = (props) => {
             }
             // else add new
             else {
+                console.log(html);
                 const docRef = await addDoc(collection(db, "posts"), {
                     __html: html.__html
                 });
@@ -106,25 +124,13 @@ export const Achievements = (props) => {
 
     return (
         <div className="achievements-page">
-            <h1 style={{ margin: "20px", marginBottom: "25px" }}>achievements</h1>
-            <div className="achievement-btns vert-flex">
-                <Button variant='success' onClick={() => {
-                    if (!adding)
-                        setAdding(true);
-                    else {
-                        savePost();
-                    }
-                }}>{adding ? "Save" : "New achievement"}</Button>
-                {
-                    adding &&
-                    <Button variant='light' onClick={() => {
-                        setAdding(false);
-                        setEditorState(EditorState.createEmpty());
-                    }}>Cancel</Button>
-                }
-            </div>
-            {
-                adding &&
+            <h1 style={{ marginBottom: "25px", marginTop: "20px", gridColumn: "1/3" }} className="hor-center">Achievements</h1>
+
+            <div className='achievements-editor'>
+                <div className="achievement-btns hor-center border rounded vert-flex">
+                    <h3>New Achievement</h3>
+                </div>
+
                 <div className="hor-center border rounded achievements-editor">
                     <Editor
                         toolbarStyle={{
@@ -132,24 +138,51 @@ export const Achievements = (props) => {
                             top: 0,
                             zIndex: 1000
                         }}
+                        toolbar={{
+                            image: {
+                                uploadCallback: _uploadImageCallBack
+                            }
+                        }}
+                        editorStyle={{ minHeight: "200px", maxHeight: "400px", backgroundColor: "#e9e9e9" }}
                         editorState={editorState}
                         editorClassName="border"
                         onEditorStateChange={(state) => setEditorState(state)}
                     />
                 </div>
-            }
 
-            <div>
+                <h4 onClick={() => savePost()} style={{ justifyContent: "center", backgroundColor: "#8EC3CB", color: "black", width: "130px", height: "60px" }} className='hor-center border rounded vert-flex align-center hover'>
+                    {postToEdit ? "Save" : "Publish"}
+                </h4>
+                {
+                    adding &&
+                    <h4 onClick={() => {
+                        setAdding(false);
+                        setEditorState(EditorState.createEmpty());
+                        setPostToEdit(undefined);
+                    }} style={{ justifyContent: "center", backgroundColor: "#eeeeee", color: "black", width: "130px", height: "60px" }} className='hor-center border rounded vert-flex align-center hover'>
+                        Cancel
+                    </h4>
+                }
+            </div>
+
+            <div className='achievement-posts'>
                 {
                     posts.map((post, index) => {
                         console.log(post);
                         return (
-                            <div className="border hor-center rounded achievement" key={index} >
+                            <div className="hor-center achievement" key={index} >
                                 <div className='vert-flex achievement-header'>
-                                    <Pencil onClick={() => setEditing(post, index)} className='hover' width={30} height={30} />
-                                    <Trash style={{ marginLeft: "20px" }} onClick={() => deletePost(post)} className='hover' width={30} height={30} />
+                                    <h3 className='p-1 rounded' style={{ color: "blue", backgroundColor: "white", marginRight: "30px" }}>Marina</h3>
+                                    <Pencil onClick={() => setEditing(post, index)} className='hover' width={30} height={30} style={{ color: "blue" }} />
+                                    <Trash style={{ marginLeft: "20px", color: "red" }} onClick={() => deletePost(post)} className='hover' width={30} height={30} />
                                 </div>
                                 <div dangerouslySetInnerHTML={post}></div>
+                                <div className='achievement-social-btns vert-flex hor-center'>
+                                    <img src={Like} className="hover" alt="" srcset="" />
+                                    <img src={Reply} className="hover" alt="" srcset="" />
+                                    <img src={Comment} className="hover" alt="" srcset="" />
+                                </div>
+                                <hr style={{ width: "80%" }} className="hor-center m-5" />
                             </div>
                         );
                     })
