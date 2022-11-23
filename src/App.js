@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
 
-        <NavigationBar loggedIn={loggedIn} logout={() => setLoggedIn(false)} />
+        {/* <NavigationBar loggedIn={loggedIn} logout={() => setLoggedIn(false)} /> */}
 
         <Routes>
           <Route path="/" element={<Login login={setLoggedIn} />} />
