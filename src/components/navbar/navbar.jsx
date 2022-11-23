@@ -11,7 +11,7 @@ export const NavigationBar = (props) => {
     const navigate = useNavigate();
 
     return (
-        <Navbar className="rounded" bg="dark" expand="lg" onToggle={setToggled}>
+        <Navbar className="" bg="dark" expand="lg" onToggle={setToggled}>
             <Container>
                 <Navbar.Toggle />
                 <Navbar.Brand style={{ color: "white" }}>

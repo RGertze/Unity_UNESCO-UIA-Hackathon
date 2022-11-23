@@ -18,7 +18,7 @@ import "./rewards.css";
  */
 export const Rewards = (props) => {
 
-    const [points, setPoints] = useState(332);
+    const [points, setPoints] = useState(340);
     const [progress, setProgress] = useState(0);
 
     const [currentGoal, setCurrentGoal] = useState(-1);

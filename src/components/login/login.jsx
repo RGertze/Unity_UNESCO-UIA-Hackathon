@@ -42,42 +42,42 @@ export const Login = (props) => {
         // temp logic until api is available
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
-        .then((res) => {
-            console.log(res.user);
-            props.login(true);
-            navigate("/home");
-        })
-        .catch((err) => {
-            alert(err.message)
-            console.log(err.code)
-            console.log(err.message)
-            return;
-        })
+            .then((res) => {
+                console.log(res.user);
+                props.login(true);
+                navigate("/home");
+            })
+            .catch((err) => {
+                alert(err.message)
+                console.log(err.code)
+                console.log(err.message)
+                return;
+            })
 
     }
 
-    const loginG = ()=>{
+    const loginG = () => {
         const provider = new GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
         const auth = getAuth();
         signInWithPopup(auth, provider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            console.log(user);
-            props.login(true);
-            navigate("/home");
-            // ...
-        }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            const email = error.customData.email;
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
-        });
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                console.log(user);
+                props.login(true);
+                navigate("/home");
+                // ...
+            }).catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                const email = error.customData.email;
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
     }
 
     return (
@@ -112,20 +112,16 @@ export const Login = (props) => {
                                 <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={"password"} />
                             </InputGroup>
                         </Form.Group>
-
-                        <Form.Group className="p-3">
-                            <Button variant="success" onClick={() => login()}>Login</Button>
-                        </Form.Group>
                     </Form>
 
                     <p className="hover">Forgot password?</p>
 
-                    <div className="hor-center hover login-sign-in">Sign In</div>
+                    <div className="hor-center hover login-sign-in" onClick={() => login()}>Sign In</div>
                     <p>---Or---</p>
                     <h5>Continue with</h5>
                     <div className="hor-center login-other-logins vert-flex">
                         <div className="hover">
-                            <img src={Google} width={42.5} height={50} alt="" onClick={()=>loginG()}/>
+                            <img src={Google} width={42.5} height={50} alt="" onClick={() => loginG()} />
                         </div>
                         <div className="hover">
                             <img src={Apple} width={42.5} height={50} alt="" />

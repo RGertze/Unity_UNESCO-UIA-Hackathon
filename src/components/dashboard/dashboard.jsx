@@ -24,7 +24,8 @@ const tempData = [
 ];
 
 const getUserName = () => {
-    return getAuth().currentUser.displayName;
+    let currentUser = getAuth().currentUser;
+    return currentUser !== null ? currentUser.displayName : "";
 }
 
 
