@@ -64,7 +64,7 @@ export const Achievements = (props) => {
 
     return (
         <div className="achievements-page">
-            <h1 style={{ margin: "20px", marginBottom: "25px" }}>achievements</h1>
+            <h1 style={{ margin: "20px", marginBottom: "25px" }}>Achievements</h1>
             <div className="achievement-btns vert-flex">
                 <Button variant='success' onClick={() => {
                     if (!adding)

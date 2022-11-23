@@ -26,11 +26,11 @@ const tempData = [
 ];
 
 const tempCountryREUsage = [
-    { name: "Namibia", value: 99 },
-    { name: "France", value: 80 },
-    { name: "Morocco", value: 12 },
-    { name: "Niger", value: 70 },
-    { name: "India", value: 60 },
+    { name: "Karnataka", value: 99 },
+    { name: "New Delhi", value: 80 },
+    { name: "UP", value: 12 },
+    { name: "Tamil Nadu", value: 70 },
+    { name: "Kerala", value: 60 },
 ];
 
 //-----------------------------------
@@ -55,7 +55,7 @@ export const Dashboard = (props) => {
 
                 <Chart width={97} data={tempData} />
 
-                <h3 className="p-3">Renewable percentage in countries over the past 10 years:</h3>
+                <h3 className="p-3">Renewable percentage in states over the past 10 years:</h3>
                 <BarChartComponent width={97} data={tempCountryREUsage} />
             </div>
 
