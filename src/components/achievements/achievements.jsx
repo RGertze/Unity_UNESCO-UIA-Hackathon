@@ -5,18 +5,16 @@ import { Button } from "react-bootstrap";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import DOMPurify from 'dompurify';
-import { doc, setDoc } from "firebase/firestore"; 
-import "./achievements.css";
-import { Pencil } from 'react-bootstrap-icons';
-import { getAuth } from 'firebase/auth';
-import { collection, addDoc, query, where, getDocs } from "firebase/firestore"; 
-import { db } from "../../App";
 
+import { collection, addDoc, getDocs, setDoc, doc, deleteDoc } from "firebase/firestore";
+import { db } from '../../App';
+
+
+import "./achievements.css";
+import { Pencil, Trash } from 'react-bootstrap-icons';
+import { async } from '@firebase/util';
 
 export const Achievements = (props) => {
-    useEffect(() => {
-        fetchDB();
-    }, []);
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
@@ -26,65 +24,9 @@ export const Achievements = (props) => {
 
     const [postToEdit, setPostToEdit] = useState(undefined);
 
-
-
-
-    const pushToDB = async (html) => {
-        try{
-            let name = getAuth().currentUser.displayName;
-            if(name==null) name = getAuth().currentUser.email;
-            console.log(name);
-            await addDoc(collection(db, "posts"), {
-                text: html,
-                date: new Date(),
-                name:  name,
-                uid: getAuth().currentUser.uid
-            });
-          
-        console.log("Document written with ID: ");
-    } catch (e) {
-        console.error("Error adding document: ", e);
-    }
-    }
-
-    const fetchDB = async () => {
-        try{
-            const querySnapshot = await getDocs(collection(db, "posts"));
-            querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            
-            posts.push(doc.data().text);
-            console.log(doc.id, " => ", doc.data());
-            });
-        console.log("Document fetch with ID: ");
-    } catch (e) {
-        console.error("Error adding document: ", e);
-    }
- 
-    console.log(posts);
-    setPosts(posts);
-    setPostToEdit(undefined);
-    setAdding(false);
-    setEditorState(EditorState.createEmpty());
-    }
-
-    const savePost = async () => {
-        let currentContentAsHTML = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-        let html = createMarkup(currentContentAsHTML);
-
-        let newPosts = posts.splice(0);
-
-        if (postToEdit !== undefined) {
-            newPosts[postToEdit] = html;
-        } else {
-            pushToDB(html);
-            newPosts.push(html);
-        }
-        setPosts([...newPosts]);
-        setPostToEdit(undefined);
-        setAdding(false);
-        setEditorState(EditorState.createEmpty());
-    }
+    useEffect(() => {
+        getAllPosts();
+    }, []);
 
     const createMarkup = (html) => {
         return {
@@ -93,13 +35,9 @@ export const Achievements = (props) => {
     }
 
     const setEditing = (post, index) => {
-
-
         const blocks = convertFromHTML(
             post.__html
         );
-
-        console.log(blocks);
 
         let newEditorState = EditorState.createWithContent(ContentState.createFromBlockArray(blocks.contentBlocks, blocks.entityMap));
         window.scrollTo(0, 0);
@@ -108,6 +46,63 @@ export const Achievements = (props) => {
         setEditorState(newEditorState);
     }
 
+    //----   GET ALL POSTS   ----
+    const getAllPosts = async () => {
+        const allPosts = await getDocs(collection(db, "posts"));
+        let postsToSet = [];
+        allPosts.forEach(post => {
+            let data = post.data();
+            console.log(`${post.id}:  ${data.__html}`);
+            if (data.__html !== undefined) {
+                postsToSet.push({
+                    id: post.id,
+                    __html: data.__html
+                });
+            }
+        });
+        setPosts(postsToSet);
+    }
+
+    //----   SAVE POST   ----
+    const savePost = async () => {
+        let currentContentAsHTML = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+        let html = createMarkup(currentContentAsHTML);
+
+        try {
+            // if editing overwrite doc
+            if (postToEdit !== undefined) {
+                const docRef = await setDoc(doc(db, "posts", posts[postToEdit].id), {
+                    __html: html.__html
+                });
+            }
+            // else add new
+            else {
+                const docRef = await addDoc(collection(db, "posts"), {
+                    __html: html.__html
+                });
+            }
+            alert("post saved!");
+            setAdding(false);
+            setPostToEdit(undefined);
+            setEditorState(EditorState.createEmpty());
+            getAllPosts();
+        } catch (error) {
+            console.error("Error adding document: ", error);
+            alert("An error occurred");
+        }
+    }
+
+    //----   DELETE POST   ----
+    const deletePost = async (post) => {
+        try {
+            await deleteDoc(doc(db, "posts", post.id));
+            getAllPosts();
+            alert("Deleted");
+        } catch (error) {
+            console.error("Error deleting document: ", error);
+            alert("An error occurred");
+        }
+    }
 
     return (
         <div className="achievements-page">
@@ -152,6 +147,7 @@ export const Achievements = (props) => {
                             <div className="border hor-center rounded achievement" key={index} >
                                 <div className='vert-flex achievement-header'>
                                     <Pencil onClick={() => setEditing(post, index)} className='hover' width={30} height={30} />
+                                    <Trash style={{ marginLeft: "20px" }} onClick={() => deletePost(post)} className='hover' width={30} height={30} />
                                 </div>
                                 <div dangerouslySetInnerHTML={post}></div>
                             </div>
