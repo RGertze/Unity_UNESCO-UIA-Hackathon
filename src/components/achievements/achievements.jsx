@@ -5,11 +5,18 @@ import { Button } from "react-bootstrap";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import DOMPurify from 'dompurify';
-
+import { doc, setDoc } from "firebase/firestore"; 
 import "./achievements.css";
 import { Pencil } from 'react-bootstrap-icons';
+import { getAuth } from 'firebase/auth';
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore"; 
+import { db } from "../../App";
+
 
 export const Achievements = (props) => {
+    useEffect(() => {
+        fetchDB();
+    }, []);
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
@@ -19,8 +26,47 @@ export const Achievements = (props) => {
 
     const [postToEdit, setPostToEdit] = useState(undefined);
 
-    useEffect(() => {
-    }, [posts]);
+
+
+
+    const pushToDB = async (html) => {
+        try{
+            let name = getAuth().currentUser.displayName;
+            if(name==null) name = getAuth().currentUser.email;
+            console.log(name);
+            await addDoc(collection(db, "posts"), {
+                text: html,
+                date: new Date(),
+                name:  name,
+                uid: getAuth().currentUser.uid
+            });
+          
+        console.log("Document written with ID: ");
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+    }
+
+    const fetchDB = async () => {
+        try{
+            const querySnapshot = await getDocs(collection(db, "posts"));
+            querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            
+            posts.push(doc.data().text);
+            console.log(doc.id, " => ", doc.data());
+            });
+        console.log("Document fetch with ID: ");
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+ 
+    console.log(posts);
+    setPosts(posts);
+    setPostToEdit(undefined);
+    setAdding(false);
+    setEditorState(EditorState.createEmpty());
+    }
 
     const savePost = async () => {
         let currentContentAsHTML = draftToHtml(convertToRaw(editorState.getCurrentContent()));
@@ -31,6 +77,7 @@ export const Achievements = (props) => {
         if (postToEdit !== undefined) {
             newPosts[postToEdit] = html;
         } else {
+            pushToDB(html);
             newPosts.push(html);
         }
         setPosts([...newPosts]);

@@ -8,7 +8,7 @@ import { SignUp } from './components/sign-up/signup';
 import { initializeApp } from "firebase/app";
 import { Achievements } from './components/achievements/achievements';
 import { DashboardInput } from './components/DashboardInput/DashboardInput';
-
+import { collection, addDoc, getFirestore } from "firebase/firestore"; 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function App() {
@@ -59,6 +59,7 @@ const firebaseConfig = {
 
 export default App;
 export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 
 
 
