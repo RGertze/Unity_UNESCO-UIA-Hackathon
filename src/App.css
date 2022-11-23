@@ -1,9 +1,12 @@
 body {
-  padding: 20px;
+  min-height: 100vh;
+  height: fit-content;
 }
 
 .App {
   text-align: center;
+  min-height: 100vh;
+  height: fit-content;
 }
 
 .App-logo {

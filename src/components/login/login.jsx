@@ -2,8 +2,18 @@ import Axios from "axios";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import InputGroup from 'react-bootstrap/InputGroup';
+
+import "./login.css";
 
 import ElecPic from "../dash-board-metric/elec.png";
+
+import MainImg from "./Group 105.png";
+import LightBulb from "./Group 109.png";
+import User from "./image 1.png";
+import Lock from "./Path 114.png";
+import Google from "./Group 110.png";
+import Apple from "./Path 115.png";
 
 import { tempUser } from "../../temp-data/users";
 
@@ -45,34 +55,63 @@ export const Login = (props) => {
     }
 
     return (
-        <div className="vert-flex justify-center" style={{ height: "50vh", alignItems: "center" }}>
+        <div className="login-page">
 
-            <div style={{
-                width: "70%",
-                height: "400px",
-                display: "grid",
-                gridTemplateColumns: "60% 1fr",
-                alignItems: "center"
-            }} className="rounded border p-3">
-                <Form>
-                    <h1 className="m-3">Login</h1>
-                    <Form.Group style={{ marginBottom: "20px" }} className="w-75 hor-center">
-                        <Form.Label>Email:</Form.Label>
-                        <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={"email"} />
-                    </Form.Group>
-                    <Form.Group className="w-75 hor-center">
-                        <Form.Label>Password:</Form.Label>
-                        <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={"password"} />
-                    </Form.Group>
+            <div className="login-image">
+                <img src={MainImg} alt="" />
 
-                    <Form.Group className="p-3">
-                        <Button variant="success" onClick={() => login()}>Login</Button>
-                    </Form.Group>
-                </Form>
+                <h4>"When the Sun is bright, say no to tube light"</h4>
+            </div>
 
-                <div>
-                    <img src={ElecPic} alt="" />
+            <div className="login-form-container">
+                <div style={{
+                }} className="login-form  p-3">
+
+                    <img className="login-bulb" src={LightBulb} alt="" />
+
+                    <Form>
+                        <Form.Group style={{ marginBottom: "20px" }} className="w-75 hor-center">
+                            <InputGroup>
+                                <InputGroup.Text style={{ backgroundColor: "white" }}>
+                                    <img src={User} alt="" srcset="" />
+                                </InputGroup.Text>
+                                <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={"email"} />
+                            </InputGroup>
+                        </Form.Group>
+                        <Form.Group className="w-75 hor-center">
+                            <InputGroup>
+                                <InputGroup.Text style={{ backgroundColor: "white" }}>
+                                    <img src={Lock} alt="" srcset="" />
+                                </InputGroup.Text>
+                                <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={"password"} />
+                            </InputGroup>
+                        </Form.Group>
+
+                        <Form.Group className="p-3">
+                            <Button variant="success" onClick={() => login()}>Login</Button>
+                        </Form.Group>
+                    </Form>
+
+                    <p className="hover">Forgot password?</p>
+
+                    <div className="hor-center hover login-sign-in">Sign In</div>
+                    <p>---Or---</p>
+                    <h5>Continue with</h5>
+                    <div className="hor-center login-other-logins vert-flex">
+                        <div className="hover">
+                            <img src={Google} width={42.5} height={50} alt="" />
+                        </div>
+                        <div className="hover">
+                            <img src={Apple} width={42.5} height={50} alt="" />
+                        </div>
+                    </div>
+
+                    <hr className="hor-center" style={{ width: "50%" }} />
+
+                    <h5>New here? <b className="hover">Register</b></h5>
                 </div>
+
+                <p className="login-terms">By signing in you accept our Privacy Policy, Terms & Licensing Agreement</p>
             </div>
 
         </div>

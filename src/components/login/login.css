@@ -1,0 +1,78 @@
+.login-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    height: fit-content;
+    background-color: #D2D7CC;
+}
+
+.login-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #99A38A;
+    grid-column: 1;
+    border-top-right-radius: 60px;
+}
+
+.login-image img {
+    width: 72%;
+    height: 50%;
+}
+
+.login-image h4 {
+    margin-top: 60px;
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 23px;
+    font-size: medium;
+}
+
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form {
+    width: 83%;
+    min-height: 80%;
+    height: fit-content;
+    background-color: #eeeeee;
+    border-radius: 41px;
+}
+
+.login-bulb {
+    width: 7.3%;
+    height: 10%;
+    margin-bottom: 40px;
+}
+
+.login-sign-in {
+    width: 21%;
+    height: 7%;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+}
+
+.login-other-logins {
+    width: 50%;
+    justify-content: space-evenly;
+}
+
+.login-other-logins div {
+    background-color: #99A38A;
+    padding: 7px;
+    border-radius: 18px;
+}
+
+.login-terms {
+    width: 51%;
+    color: #68725A;
+}
