@@ -12,7 +12,7 @@ export const NavigationBar = (props) => {
     const navigate = useNavigate();
 
     return (
-        <Navbar className="" bg="dark" expand="lg" onToggle={setToggled}>
+        <Navbar className="" bg="#84c09d" expand="lg" onToggle={setToggled}>
             <Container>
                 <Navbar.Toggle />
                 <Navbar.Brand style={{ color: "white" }}>
@@ -23,10 +23,10 @@ export const NavigationBar = (props) => {
                         props.loggedIn &&
                         <>
                             <Nav>
-                                <NavLink to="/home" as={Link} style={{ color: "white" }}>Home</NavLink>
+                                <NavLink to="/home" as={Link} style={{ color: "black" }}>Home</NavLink>
                             </Nav>
                             <Nav>
-                                <NavLink to="/achievements" as={Link} style={{ color: "white" }}>Achievements</NavLink>
+                                <NavLink to="/achievements" as={Link} style={{ color: "black" }}>Achievements</NavLink>
                             </Nav>
                         </>
                     }

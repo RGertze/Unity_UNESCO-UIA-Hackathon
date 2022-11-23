@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { SignUp } from './components/sign-up/signup';
 import { initializeApp } from "firebase/app";
 import { Achievements } from './components/achievements/achievements';
+import { DashboardInput } from './components/DashboardInput/DashboardInput';
 
 function App() {
 
@@ -23,8 +24,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Login login={setLoggedIn} />} />
           <Route path="/register" element={<SignUp />} />
-          <Route path="/home" element={<Dashboard />} />
+          <Route path="/home" element={<DashboardInput />} />
           <Route path="/achievements" element={<Achievements />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </BrowserRouter>
