@@ -3,6 +3,7 @@ import "./dashboardMetric.css"
 
 import ElecPic from "./elec.png";
 import SolarPic from "./solar.webp";
+import EVPic from "./ev.webp";
 import BioPic from "./bio.webp";
 import { InfoCircle } from "react-bootstrap-icons";
 import { Alert } from "react-bootstrap";
@@ -10,6 +11,7 @@ import { Alert } from "react-bootstrap";
 export const M_Solar = 1;
 export const M_Watts = 2;
 export const M_Bio = 3;
+export const EV = 4;
 
 
 /**
@@ -41,6 +43,9 @@ export const DashboardMetric = (props) => {
         switch (props.type) {
             case M_Solar:
                 setImg(SolarPic);
+                break;
+            case EV:
+                setImg(EVPic);
                 break;
             case M_Watts:
                 setImg(ElecPic);

@@ -1,7 +1,9 @@
+import { getToPathname } from "@remix-run/router";
 import { Chart } from "../chart/chart";
-import { DashboardMetric, M_Bio, M_Solar, M_Watts } from "../dash-board-metric/dashboardMetric";
+import { DashboardMetric, M_Bio, M_Solar, M_Watts, EV } from "../dash-board-metric/dashboardMetric";
 import { Rewards } from "../rewards/rewards";
 import "./dashboard.css";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth'
 
 
 //----   TEMP DATA   ----
@@ -21,16 +23,21 @@ const tempData = [
     { day: "13", solarUsage: 45, electricUsage: 30, bioFuelUsage: 34 },
 ];
 
+const getUserName = () => {
+    return getAuth().currentUser.displayName;
+}
+
 
 
 export const Dashboard = (props) => {
     return (
         <div className=" dashboard">
-            <h1 style={{ width: "100%", textAlign: "center", gridColumn: "1/3" }}>Dashboard</h1>
+            <h1 style={{ width: "100%", textAlign: "center", gridColumn: "1/3" }}>Dashboard : {getUserName()}</h1>
 
             <div className="vert-flex  dash-metrics">
                 <DashboardMetric title="Solar Energy Used" unit="kWh" value={38} type={M_Solar} thresholds={[100, 200]} />
                 <DashboardMetric title="Electricity Used" unit="kWh" value={300} type={M_Watts} thresholds={[200, 400]} />
+                <DashboardMetric title="EV" unit="kWh" value={100} type={EV} thresholds={[200, 400]} />
                 <DashboardMetric title="Bio Fuel Used" unit="J/kg" value={4000} type={M_Bio} thresholds={[1000, 2000]} />
 
                 <Chart width={97} data={tempData} />

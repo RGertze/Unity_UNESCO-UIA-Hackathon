@@ -2,12 +2,12 @@ import Axios from "axios";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+import { GoogleAuthProvider } from "firebase/auth";
 import InputGroup from 'react-bootstrap/InputGroup';
 
 import "./login.css";
 
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth'
 
 
 import ElecPic from "../dash-board-metric/elec.png";
@@ -43,7 +43,9 @@ export const Login = (props) => {
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
         .then((res) => {
-            console.log(res.user)
+            console.log(res.user);
+            props.login(true);
+            navigate("/home");
         })
         .catch((err) => {
             alert(err.message)
@@ -52,9 +54,30 @@ export const Login = (props) => {
             return;
         })
 
-        props.login(true);
+    }
 
-        navigate("/home");
+    const loginG = ()=>{
+        const provider = new GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        const auth = getAuth();
+        signInWithPopup(auth, provider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            console.log(user);
+            props.login(true);
+            navigate("/home");
+            // ...
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            const email = error.customData.email;
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
     }
 
     return (
@@ -102,7 +125,7 @@ export const Login = (props) => {
                     <h5>Continue with</h5>
                     <div className="hor-center login-other-logins vert-flex">
                         <div className="hover">
-                            <img src={Google} width={42.5} height={50} alt="" />
+                            <img src={Google} width={42.5} height={50} alt="" onClick={()=>loginG()}/>
                         </div>
                         <div className="hover">
                             <img src={Apple} width={42.5} height={50} alt="" />
