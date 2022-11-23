@@ -1,16 +1,16 @@
-.announcements-page {
+.achievements-page {
     width: 100%;
     min-height: 100vh;
     height: fit-content;
     padding: 20px;
 }
 
-.announcement-btns {
+.achievement-btns {
     justify-content: center;
     margin-bottom: 10px;
 }
 
-.announcements-editor {
+.achievements-editor {
     width: 80%;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -18,7 +18,13 @@
     background-color: #fefefe;
 }
 
-.announcement {
+.achievement-header {
+    padding: 10px;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 10px;
+}
+
+.achievement {
     width: 80%;
     margin-bottom: 20px;
 }

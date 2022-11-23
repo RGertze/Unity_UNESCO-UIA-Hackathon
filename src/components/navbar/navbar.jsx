@@ -26,7 +26,7 @@ export const NavigationBar = (props) => {
                                 <NavLink to="/home" as={Link} style={{ color: "white" }}>Home</NavLink>
                             </Nav>
                             <Nav>
-                                <NavLink to="/announcements" as={Link} style={{ color: "white" }}>Announcements</NavLink>
+                                <NavLink to="/achievements" as={Link} style={{ color: "white" }}>Achievements</NavLink>
                             </Nav>
                         </>
                     }
