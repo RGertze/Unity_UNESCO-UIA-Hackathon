@@ -6,6 +6,10 @@ import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import DOMPurify from 'dompurify';
 
+import { collection, addDoc, getDocs, setDoc, doc } from "firebase/firestore";
+import { db } from '../../App';
+
+
 import "./achievements.css";
 import { Pencil } from 'react-bootstrap-icons';
 
@@ -20,24 +24,8 @@ export const Achievements = (props) => {
     const [postToEdit, setPostToEdit] = useState(undefined);
 
     useEffect(() => {
-    }, [posts]);
-
-    const savePost = async () => {
-        let currentContentAsHTML = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-        let html = createMarkup(currentContentAsHTML);
-
-        let newPosts = posts.splice(0);
-
-        if (postToEdit !== undefined) {
-            newPosts[postToEdit] = html;
-        } else {
-            newPosts.push(html);
-        }
-        setPosts([...newPosts]);
-        setPostToEdit(undefined);
-        setAdding(false);
-        setEditorState(EditorState.createEmpty());
-    }
+        getAllPosts();
+    }, []);
 
     const createMarkup = (html) => {
         return {
@@ -46,13 +34,9 @@ export const Achievements = (props) => {
     }
 
     const setEditing = (post, index) => {
-
-
         const blocks = convertFromHTML(
             post.__html
         );
-
-        console.log(blocks);
 
         let newEditorState = EditorState.createWithContent(ContentState.createFromBlockArray(blocks.contentBlocks, blocks.entityMap));
         window.scrollTo(0, 0);
@@ -61,6 +45,51 @@ export const Achievements = (props) => {
         setEditorState(newEditorState);
     }
 
+    //----   GET ALL POSTS   ----
+    const getAllPosts = async () => {
+        const allPosts = await getDocs(collection(db, "posts"));
+        let postsToSet = [];
+        allPosts.forEach(post => {
+            let data = post.data();
+            console.log(`${post.id}:  ${data.__html}`);
+            if (data.__html !== undefined) {
+                postsToSet.push({
+                    id: post.id,
+                    __html: data.__html
+                });
+            }
+        });
+        setPosts(postsToSet);
+    }
+
+    //----   SAVE POST   ----
+    const savePost = async () => {
+        let currentContentAsHTML = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+        let html = createMarkup(currentContentAsHTML);
+
+        try {
+
+            // if editing overwrite doc
+            if (postToEdit !== undefined) {
+                const docRef = await setDoc(doc(db, "posts", posts[postToEdit].id), {
+                    __html: html.__html
+                });
+            }
+            // else add new
+            else {
+                const docRef = await addDoc(collection(db, "posts"), {
+                    __html: html.__html
+                });
+            }
+            alert("post saved!");
+            setAdding(false);
+            setPostToEdit(undefined);
+            setEditorState(EditorState.createEmpty());
+            getAllPosts();
+        } catch (error) {
+            console.error("Error adding document: ", error);
+        }
+    }
 
     return (
         <div className="achievements-page">
