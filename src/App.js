@@ -6,6 +6,7 @@ import { Login } from './components/login/login';
 import { useState } from 'react';
 import { SignUp } from './components/sign-up/signup';
 import { initializeApp } from "firebase/app";
+import { DashboardInput } from './components/dashboard-input/dashboard-input';
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login login={setLoggedIn} />} />
           <Route path="/register" element={<SignUp />} />
-          <Route path="/home" element={<Dashboard />} />
+          <Route path="/home" element={<DashboardInput />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </BrowserRouter>

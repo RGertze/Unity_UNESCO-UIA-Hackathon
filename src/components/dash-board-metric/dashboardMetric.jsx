@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./dashboardMetric.css"
-
+import { collection, query, where, getDocs } from "firebase/firestore";
 import ElecPic from "./elec.png";
 import SolarPic from "./solar.webp";
 import BioPic from "./bio.webp";
@@ -35,6 +35,8 @@ export const DashboardMetric = (props) => {
 
     useEffect(() => {
         init();
+        // var user = firebase.auth().currentUser;
+        // db.collection("stories").where("author", "==", user.uid).get()
     }, []);
 
     const init = () => {
