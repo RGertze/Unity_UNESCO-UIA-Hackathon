@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Navbar, Container, Nav, NavLink, Button } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import { getAuth, signOut } from "firebase/auth";
+import "./navbar.css";
 
 import Logo from "./logo.jpg";
 import AppLogo from "../../assets/appLogo.png";
@@ -12,7 +13,7 @@ export const NavigationBar = (props) => {
     const navigate = useNavigate();
 
     return (
-        <Navbar className="" bg="#84c09d" expand="lg" onToggle={setToggled}>
+        <Navbar className="navbar-custom" variant="" expand="lg" onToggle={setToggled}>
             <Container>
                 <Navbar.Toggle />
                 <Navbar.Brand style={{ color: "white" }}>
