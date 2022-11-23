@@ -7,10 +7,9 @@ import { useEffect, useState } from 'react';
 import { SignUp } from './components/sign-up/signup';
 import { Achievements } from './components/achievements/achievements';
 import { DashboardInput } from './components/DashboardInput/DashboardInput';
-import { collection, addDoc, getFirestore } from "firebase/firestore"; 
+import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
