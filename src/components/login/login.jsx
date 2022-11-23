@@ -132,7 +132,7 @@ export const Login = (props) => {
 
                     <hr className="hor-center" style={{ width: "50%" }} />
 
-                    <h5>New here? <b className="hover">Register</b></h5>
+                    <h5>New here? <div  onClick={ () => navigate("/register") }><b className="hover">Register</b></div></h5>
                 </div>
 
                 <p className="login-terms">By signing in you accept our Privacy Policy, Terms & Licensing Agreement</p>
