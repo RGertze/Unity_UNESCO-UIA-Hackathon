@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { getAuth, signOut } from "firebase/auth";
 
 import Logo from "./logo.jpg";
+import AppLogo from "../../assets/appLogo.png";
 
 export const NavigationBar = (props) => {
 
@@ -15,8 +16,7 @@ export const NavigationBar = (props) => {
             <Container>
                 <Navbar.Toggle />
                 <Navbar.Brand style={{ color: "white" }}>
-                    <img className="rounded" src={Logo} alt="An awesome logo" style={{ width: "30px", height: "30px", marginRight: "20px" }} />
-                    Your App Name Here
+                    <img className="rounded" src={AppLogo} alt="An awesome logo" style={{ width: "120px", height: "35px", marginRight: "20px" }} />
                 </Navbar.Brand>
                 <Navbar.Collapse>
                     {
