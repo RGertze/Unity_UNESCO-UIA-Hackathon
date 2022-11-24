@@ -8,13 +8,13 @@ export const NotificationsComponent = (props) => {
 
     const [allNotifications, setAllNotifications] = useState([
         {
-            value: "hi"
+            value: "Challenge 1"
         },
         {
-            value: "hi 1"
+            value: "Challenge 2"
         },
         {
-            value: "hi 2"
+            value: "Challenge 3"
         },
     ]);
     const [tabKey, initTabKey] = useState('challenges');
@@ -35,10 +35,7 @@ export const NotificationsComponent = (props) => {
                             allNotifications.map((notif, index) => {
                                 return (
                                     <div className="notification border rounded p-2 m-2">
-                                        <h1>{notif.value}</h1>
                                         <h3>{notif.value}</h3>
-                                        <h3>{notif.value}</h3>
-                                        <h2>{notif.value}</h2>
                                     </div>
                                 );
                             })
