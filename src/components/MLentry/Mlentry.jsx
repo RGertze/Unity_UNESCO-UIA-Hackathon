@@ -18,17 +18,17 @@ export const MLentry = (props) => {
     const proceed = () => {
 
         if (f1 === "") {
-            alert("enter a orga");
+            alert("Enter Range!");
             return;
         }
 
         if (f2 === "") {
-            alert("enter a f2");
+            alert("Enter Pick-Up Speed!");
             return;
         }
 
         if (f3 === "") {
-            alert("enter a f3");
+            alert("Enter Mileage!");
             return;
         }
 
@@ -78,25 +78,25 @@ export const MLentry = (props) => {
                 alignItems: "center"
             }} className="rounded border p-3">
                 <Form>
-                    <h1 className="m-3">Machine Learning Entry</h1>
+                    <h1 className="m-3">Prediction Model for EV's</h1>
                     <Form.Group style={{ marginBottom: "20px" }} className="w-75 hor-center">
-                        <Form.Label>f1:</Form.Label>
-                        <Form.Control type="text" value={f1} onChange={(e) => setf1(e.target.value)} placeholder={"f1"} required />
+                        <Form.Label>Range:</Form.Label>
+                        <Form.Control type="text" value={f1} onChange={(e) => setf1(e.target.value)} placeholder={"Enter Range"} required />
                     </Form.Group>
                     <Form.Group style={{ marginBottom: "20px" }} className="w-75 hor-center">
-                        <Form.Label>f2:</Form.Label>
-                        <Form.Control type="text" value={f2} onChange={(e) => setf2(e.target.value)} placeholder={"f2"} required />
+                        <Form.Label>Pick-Up Speed:</Form.Label>
+                        <Form.Control type="text" value={f2} onChange={(e) => setf2(e.target.value)} placeholder={"Enter Pick-Up Speed"} required />
                     </Form.Group>
                     <Form.Group className="w-75 hor-center">
-                        <Form.Label>f3:</Form.Label>
-                        <Form.Control type="text" value={f3} onChange={(e) => setf3(e.target.value)} placeholder={"f3"} />
+                        <Form.Label>Mileage:</Form.Label>
+                        <Form.Control type="text" value={f3} onChange={(e) => setf3(e.target.value)} placeholder={"Enter Mileage"} />
                     </Form.Group>
 
                     <Form.Group className="p-3">
                         <Button style={{ marginBottom: "20px" }} variant="success" onClick={() => proceed()}>Proceed</Button>
                     </Form.Group>
-                    <Form.Group className="w-75 hor-center">
-                        <Form.Label>Prediction</Form.Label>
+                    <Form.Group className="w-75 hor-center"><br />
+                        <Form.Label>Number of Electric Vehicles:</Form.Label>
                         <Form.Control type="text" value={f4} onChange={(e) => setf4(e.target.value)} disabled />
                     </Form.Group>
                 </Form>
