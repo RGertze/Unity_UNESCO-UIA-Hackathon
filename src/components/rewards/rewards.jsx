@@ -80,9 +80,9 @@ export const Rewards = (props) => {
 
     return (
         <div className="border rounded rewards">
-            <h2 style={{ padding: 20 }}>Rewards</h2>
+            <h2 style={{ padding: 20, color: "white", fontSize: "50px" }}>Rewards</h2>
 
-            <div className="hor-center reward-progress">
+            <div className="hor-center p-3 rounded reward-progress">
                 <ArcProgress
                     className='hor-center'
                     progress={progress}

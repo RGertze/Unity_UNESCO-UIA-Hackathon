@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import "./dashboardMetric.css"
 
-import ElecPic from "./elec.png";
-import SolarPic from "./solar.webp";
-import EVPic from "./ev.webp";
-import BioPic from "./bio.webp";
+import ElecPic from "../../assets/Group.png";
+import SolarPic from "../../assets/Group (1).png";
+import EVPic from "../../assets/Group (2).png";
+import BioPic from "../../assets/Group (3).png";
 import { InfoCircle } from "react-bootstrap-icons";
 import { Alert, ProgressBar } from "react-bootstrap";
 
@@ -73,9 +73,9 @@ export const DashboardMetric = (props) => {
     }
 
     return (
-        <div className="rounded border p-2 m-3 metric">
+        <div className="rounded border p-3 m-3 metric">
             <div className="vert-flex align-center space-evenly w-100">
-                <h2>{props.title} </h2>
+                <h2 className="rounded metric-title">{props.title} </h2>
                 <div className="metric-popup-container">
                     <InfoCircle width={30} height={30} className="hover metric-popup-trigger" />
                     <div className="metric-popup border rounded p-3">
@@ -96,7 +96,7 @@ export const DashboardMetric = (props) => {
                     </div>
                 </div>
             </div>
-            <img className="metric-img" src={img} alt="a very important pic" />
+            <img className="metric-img m-4" src={img} alt="a very important pic" />
             <div className="vert-flex space-evenly w-75">
                 <h3 style={{ color: valueColor }}><b>{props.value}</b></h3>
                 <h2 onClick={() => {

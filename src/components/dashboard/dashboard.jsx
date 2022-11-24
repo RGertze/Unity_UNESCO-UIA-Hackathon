@@ -6,6 +6,8 @@ import "./dashboard.css";
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth'
 import { BarChartComponent } from "../bar-chart/barChart";
 import { useEffect, useState } from "react";
+import Axios from "axios";
+import { useFetcher } from "react-router-dom";
 
 
 //----   TEMP DATA   ----
@@ -51,6 +53,20 @@ const getUserName = () => {
 
 
 export const Dashboard = (props) => {
+
+    useEffect(() => {
+        queryApi();
+    }, []);
+
+    const queryApi = async () => {
+        try {
+            const result = await Axios.post("https://c76c-103-177-203-246.in.ngrok.io/click");
+
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className=" dashboard">

@@ -15,7 +15,7 @@ import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAx
  */
 export const BarChartComponent = (props) => {
     return (
-        <div style={{ width: `${props.width}%` }}>
+        <div style={{ width: `${props.width}%`, backgroundColor: "" }}>
             <ResponsiveContainer minWidth={500} minHeight={500} width="100%" height="100%">
                 <BarChart
                     width={500}
