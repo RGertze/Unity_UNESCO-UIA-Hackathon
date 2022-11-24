@@ -4,6 +4,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+<<<<<<< Updated upstream
+=======
+}
+
+.metric-title {
+    background-color: #99A38A;
+    min-width: 70%;
+    padding: 10px;
+    color: white;
+>>>>>>> Stashed changes
 }
 
 .metric-img {
@@ -12,7 +22,9 @@
     margin: 10px;
 }
 
-.metric-popup-container {}
+.metric-popup-container {
+
+}
 
 .metric-popup-trigger:hover+.metric-popup {
     display: inline;

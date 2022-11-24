@@ -33,11 +33,11 @@ export const Login = (props) => {
 
     const login = async () => {
         if (email === "") {
-            alert("enter an email");
+            alert("Enter Email ID!");
             return;
         }
         if (password === "") {
-            alert("enter a password");
+            alert("Enter Password!");
             return;
         }
 
@@ -103,7 +103,7 @@ export const Login = (props) => {
                                 <InputGroup.Text style={{ backgroundColor: "white" }}>
                                     <img src={User} alt="" srcset="" />
                                 </InputGroup.Text>
-                                <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={"email"} />
+                                <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={"Enter Email ID"} />
                             </InputGroup>
                         </Form.Group>
                         <Form.Group className="w-75 hor-center">
@@ -111,7 +111,7 @@ export const Login = (props) => {
                                 <InputGroup.Text style={{ backgroundColor: "white" }}>
                                     <img src={Lock} alt="" srcset="" />
                                 </InputGroup.Text>
-                                <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={"password"} />
+                                <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={"Enter Password"} />
                             </InputGroup>
                         </Form.Group>
                     </Form>

@@ -5,6 +5,11 @@ import { Rewards } from "../rewards/rewards";
 import "./dashboard.css";
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth'
 import { BarChartComponent } from "../bar-chart/barChart";
+<<<<<<< Updated upstream
+=======
+import { useEffect, useState } from "react";
+import FetchRandomUser from "../api/FetchRandomUser";
+>>>>>>> Stashed changes
 
 
 //----   TEMP DATA   ----
@@ -43,20 +48,36 @@ const getUserName = () => {
 
 
 export const Dashboard = (props) => {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     return (
         <div className=" dashboard">
             <h1 style={{ width: "100%", textAlign: "center", gridColumn: "1/3" }}>Dashboard : {getUserName()}</h1>
 
             <div className="vert-flex  dash-metrics">
+<<<<<<< Updated upstream
                 <DashboardMetric title="Solar Energy Used" unit="kWh" value={38} type={M_Solar} thresholds={[100, 200]} />
                 <DashboardMetric title="Electricity Used" unit="kWh" value={250} type={M_Watts} thresholds={[200, 400]} />
                 <DashboardMetric title="EV" unit="kWh" value={0} type={EV} thresholds={[200, 400]} />
                 <DashboardMetric title="Bio Fuel Used" unit="J/kg" value={4000} type={M_Bio} thresholds={[1000, 2000]} />
+=======
+                <DashboardMetric title="Solar Energy Used" unit="kWh" value={tempData[12].solarUsage} type={M_Solar} thresholds={[15, 25]} />
+                <DashboardMetric title="Electricity Used" unit="kWh" value={tempData[12].electricUsage} type={M_Watts} thresholds={[15, 25]} />
+                <DashboardMetric title="EV" unit="kWh" value={tempData[12].evUsage} type={EV} thresholds={[30, 40]} />
+                <DashboardMetric title="Bio Fuel Used" unit="J/kg" value={tempData[12].bioFuelUsage} type={M_Bio} thresholds={[20, 30]} />
+>>>>>>> Stashed changes
 
                 <Chart width={97} data={tempData} />
 
                 <h3 className="p-3">Renewable percentage in states over the past 10 years:</h3>
                 <BarChartComponent width={97} data={tempCountryREUsage} />
+<<<<<<< Updated upstream
+=======
+
+                <FetchRandomUser/>
+>>>>>>> Stashed changes
             </div>
 
             <Rewards />

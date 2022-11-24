@@ -29,19 +29,19 @@ export const SignUp = (props) => {
 
     const signUp = async () => {
         if (email === "") {
-            alert("enter a username");
+            alert("Enter User Name!");
             return;
         }
         if (email === "") {
-            alert("enter an email");
+            alert("Enter Email ID");
             return;
         }
         if (password === "") {
-            alert("enter a password");
+            alert("Enter Password!");
             return;
         }
         if (confirmPassword !== password) {
-            alert("passwords do not match");
+            alert("Passwords do not match!");
             return;
         }
 
@@ -78,7 +78,7 @@ export const SignUp = (props) => {
                                 <InputGroup.Text style={{ backgroundColor: "white" }}>
                                     <img src={User} alt="" srcset="" />
                                 </InputGroup.Text>
-                                <Form.Control type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder={"username"} />
+                                <Form.Control type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder={"Enter User Name"} />
                             </InputGroup>
                         </Form.Group>
                         <Form.Group style={{ marginBottom: "20px" }} className="w-75 hor-center">
@@ -86,7 +86,7 @@ export const SignUp = (props) => {
                                 <InputGroup.Text style={{ backgroundColor: "white" }}>
                                     <img src={Email} alt="" srcset="" />
                                 </InputGroup.Text>
-                                <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={"email"} />
+                                <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={"Enter Email ID"} />
                             </InputGroup>
                         </Form.Group>
                         <Form.Group style={{ marginBottom: "20px" }} className="w-75 hor-center">
@@ -94,7 +94,7 @@ export const SignUp = (props) => {
                                 <InputGroup.Text style={{ backgroundColor: "white" }}>
                                     <img src={Lock} alt="" srcset="" />
                                 </InputGroup.Text>
-                                <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={"password"} />
+                                <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={"Enter Password"} />
                             </InputGroup>
                         </Form.Group>
                         <Form.Group className="w-75 hor-center">
@@ -102,7 +102,7 @@ export const SignUp = (props) => {
                                 <InputGroup.Text style={{ backgroundColor: "white" }}>
                                     <img src={Lock} alt="" srcset="" />
                                 </InputGroup.Text>
-                                <Form.Control type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder={"confirm password"} />
+                                <Form.Control type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder={"Confirm Password"} />
                             </InputGroup>
                         </Form.Group>
                     </Form>

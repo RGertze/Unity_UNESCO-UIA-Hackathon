@@ -18,17 +18,17 @@ export const DashboardInput = (props) => {
     const proceed = () => {
         
         if (organisation === "") {
-            alert("enter a orga");
+            alert("Enter Organization!");
             return;
         }
 
         if (consumerID === "") {
-            alert("enter a consumerID");
+            alert("Enter Consumer ID");
             return;
         }
 
         if (EmployeeID === "") {
-            alert("enter a EMployeeID");
+            alert("Enter Employee ID");
             return;
         }
 
@@ -48,23 +48,23 @@ export const DashboardInput = (props) => {
                 alignItems: "center"
             }} className="rounded border p-3">
                 <Form>
-                    <h1 className="m-3">User Organisation</h1>
+                    <h1 className="m-3">User Organization</h1>
                     <Form.Group style={{ marginBottom: "20px" }} className="w-75 hor-center">
-                        <Form.Label>Organisation :</Form.Label>
+                        <Form.Label>Organization :</Form.Label>
                         <Form.Select  value={organisation} onChange={(e) => setOrganisation(e.target.value)} placeholder={"organisation"} >
-                            <option></option> 
-                            <option>orga1</option>    
-                            <option>orga2</option>    
-                            <option>orga3</option>    
+                            <option>Select Organization</option> 
+                            <option>Department of Energy</option>    
+                            <option>Department of Agriculture</option>    
+                            <option>Department of Industries</option>    
                         </ Form.Select>
                     </Form.Group>
                     <Form.Group style={{ marginBottom: "20px" }} className="w-75 hor-center">
-                        <Form.Label>consumerID:</Form.Label>
-                        <Form.Control type="text" value={consumerID} onChange={(e) => setConsumerID(e.target.value)} placeholder={"consumerID"} required/>
+                        <Form.Label>Consumer ID:</Form.Label>
+                        <Form.Control type="text" value={consumerID} onChange={(e) => setConsumerID(e.target.value)} placeholder={"Enter Consumer ID"} required/>
                     </Form.Group>
                     <Form.Group className="w-75 hor-center">
-                        <Form.Label>EmployeeID:</Form.Label>
-                        <Form.Control type="text" value={EmployeeID} onChange={(e) => setEmployeeID(e.target.value)} placeholder={"EmployeeID"} />
+                        <Form.Label>Employee ID:</Form.Label>
+                        <Form.Control type="text" value={EmployeeID} onChange={(e) => setEmployeeID(e.target.value)} placeholder={"Enter Employee ID"} required/>
                     </Form.Group>
 
                     <Form.Group className="p-3">
