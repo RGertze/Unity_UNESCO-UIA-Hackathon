@@ -10,6 +10,7 @@ import { Achievements } from './components/achievements/achievements';
 import { DashboardInput } from './components/DashboardInput/DashboardInput';
 import { collection, addDoc, getFirestore } from "firebase/firestore"; 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { Challenge } from './components/challenges/challenges';
 
 function App() {
 
@@ -41,6 +42,8 @@ function App() {
           <Route path="/home" element={<DashboardInput />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/challenge" element={<Challenge />} />
+
         </Routes>
       </div>
     </BrowserRouter>

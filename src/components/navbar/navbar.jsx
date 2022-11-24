@@ -6,6 +6,7 @@ import "./navbar.css";
 
 import Logo from "./logo.jpg";
 import AppLogo from "../../assets/appLogo.png";
+import Typography from '@mui/material/Typography';
 
 export const NavigationBar = (props) => {
 
@@ -26,7 +27,9 @@ export const NavigationBar = (props) => {
                             <Nav>
                                 <NavLink to="/home" as={Link} style={{ color: "black" }}>Home</NavLink>
                                 <NavLink to="/dashboard" as={Link} style={{ color: "black" }}>Dashboard</NavLink>
+
                             </Nav>
+
                             <Nav>
                                 <NavLink to="/achievements" as={Link} style={{ color: "black" }}>Achievements</NavLink>
                             </Nav>

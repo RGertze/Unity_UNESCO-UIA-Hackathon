@@ -11,7 +11,7 @@ import { Pencil } from 'react-bootstrap-icons';
 import { getAuth } from 'firebase/auth';
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore"; 
 import { db } from "../../App";
-
+import { RecipeReviewCard } from "../post/post";
 
 export const Achievements = (props) => {
     useEffect(() => {
@@ -108,9 +108,9 @@ export const Achievements = (props) => {
         setEditorState(newEditorState);
     }
 
-
     return (
         <div className="achievements-page">
+            
             <h1 style={{ margin: "20px", marginBottom: "25px" }}>achievements</h1>
             <div className="achievement-btns vert-flex">
                 <Button variant='success' onClick={() => {
