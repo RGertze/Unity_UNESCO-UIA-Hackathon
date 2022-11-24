@@ -16,7 +16,7 @@ export const MLentry = (props) => {
     const navigate = useNavigate();
 
     const proceed = () => {
-        
+
         if (f1 === "") {
             alert("enter a orga");
             return;
@@ -39,12 +39,12 @@ export const MLentry = (props) => {
         }));
 
         const requestOptions = {
-            mode:'no-cors',
             method: 'POST',
-            headers: { 'Content-Type': 'application/json'?
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-          },
+            headers: {
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+                // "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+            },
             body: JSON.stringify({
                 "range": parseInt(f1),
                 "zto60": parseInt(f2),
@@ -52,21 +52,22 @@ export const MLentry = (props) => {
             })
         };
         fetch('https://bbe5-103-177-203-246.in.ngrok.io/hellopost', requestOptions)
-            .then(response => console.log(response.json()))
+            .then(response => console.log(response))
             .then(data => {
-                
-                
-                
-                console.log(data)});  
-                
-                // if(f1<200){setf4(400);}
-                // else if(f1<350){setf4(1000);}
-                // else {setf4(5000);}
+                console.log(data)
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+        // if(f1<200){setf4(400);}
+        // else if(f1<350){setf4(1000);}
+        // else {setf4(5000);}
     }
-    
+
 
     return (
-        
+
         <div className="vert-flex justify-center" style={{ height: "60vh", alignItems: "center" }}>
             <Navbar />
             <div style={{
@@ -80,11 +81,11 @@ export const MLentry = (props) => {
                     <h1 className="m-3">Machine Learning Entry</h1>
                     <Form.Group style={{ marginBottom: "20px" }} className="w-75 hor-center">
                         <Form.Label>f1:</Form.Label>
-                        <Form.Control type="text" value={f1} onChange={(e) => setf1(e.target.value)} placeholder={"f1"} required/>
+                        <Form.Control type="text" value={f1} onChange={(e) => setf1(e.target.value)} placeholder={"f1"} required />
                     </Form.Group>
                     <Form.Group style={{ marginBottom: "20px" }} className="w-75 hor-center">
                         <Form.Label>f2:</Form.Label>
-                        <Form.Control type="text" value={f2} onChange={(e) => setf2(e.target.value)} placeholder={"f2"} required/>
+                        <Form.Control type="text" value={f2} onChange={(e) => setf2(e.target.value)} placeholder={"f2"} required />
                     </Form.Group>
                     <Form.Group className="w-75 hor-center">
                         <Form.Label>f3:</Form.Label>
@@ -96,11 +97,11 @@ export const MLentry = (props) => {
                     </Form.Group>
                     <Form.Group className="w-75 hor-center">
                         <Form.Label>Prediction</Form.Label>
-                        <Form.Control type="text" value={f4} onChange={(e) => setf4(e.target.value)} disabled/>
+                        <Form.Control type="text" value={f4} onChange={(e) => setf4(e.target.value)} disabled />
                     </Form.Group>
                 </Form>
 
-                
+
             </div>
 
         </div>

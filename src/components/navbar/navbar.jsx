@@ -40,12 +40,13 @@ export const NavigationBar = (props) => {
                 {
                     props.loggedIn &&
                     <div className={`navbar-icons vert-flex space-evenly ${toggled && "hor-center"}`}>
-                        <Nav >
-                            <Bell style={{ width: 25, height: 25 }} onClick={() => props.showNotifications()} className={`hor-center hover`}></Bell>
-                        </Nav>
+
                     </div>
                 }
                 <Navbar.Collapse className="justify-content-end">
+                    <Nav >
+                        <Bell style={{ width: 25, height: 25, marginRight: "40px" }} onClick={() => props.showNotifications()} className={`hor-center hover`}></Bell>
+                    </Nav>
                     <Nav >
                         {
                             !props.loggedIn &&
