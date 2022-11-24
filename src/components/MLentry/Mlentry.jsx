@@ -6,13 +6,12 @@ import ElecPic from "../dash-board-metric/energy.png";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 
 import { tempUser } from "../../temp-data/users";
-import { Flower1 } from "react-bootstrap-icons";
-
 export const MLentry = (props) => {
 
     const [f1, setf1] = useState("");
     const [f2, setf2] = useState("");
     const [f3, setf3] = useState("");
+    const [f4, setf4] = useState("");
 
     const navigate = useNavigate();
 
@@ -33,21 +32,36 @@ export const MLentry = (props) => {
             return;
         }
 
+        console.log(JSON.stringify({
+            range: parseInt(f1),
+            zto60: parseInt(f2),
+            kithna_door: parseInt(f3)
+        }));
+
         const requestOptions = {
+            mode:'no-cors',
             method: 'POST',
             headers: { 'Content-Type': 'application/json'?
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
           },
             body: JSON.stringify({
-                 range: f1,
-                 zto60: f2,
-                kithna_door:f3
+                "range": parseInt(f1),
+                "zto60": parseInt(f2),
+                "kithna_door": parseInt(f3)
             })
         };
-        fetch('https://c76c-103-177-203-246.in.ngrok.io/hellopost', requestOptions)
+        fetch('https://bbe5-103-177-203-246.in.ngrok.io/hellopost', requestOptions)
             .then(response => console.log(response.json()))
-            .then(data => console.log(data));       
+            .then(data => {
+                
+                
+                
+                console.log(data)});  
+                
+                // if(f1<200){setf4(400);}
+                // else if(f1<350){setf4(1000);}
+                // else {setf4(5000);}
     }
     
 
@@ -79,6 +93,10 @@ export const MLentry = (props) => {
 
                     <Form.Group className="p-3">
                         <Button style={{ marginBottom: "20px" }} variant="success" onClick={() => proceed()}>Proceed</Button>
+                    </Form.Group>
+                    <Form.Group className="w-75 hor-center">
+                        <Form.Label>Prediction</Form.Label>
+                        <Form.Control type="text" value={f4} onChange={(e) => setf4(e.target.value)} disabled/>
                     </Form.Group>
                 </Form>
 

@@ -29,6 +29,7 @@ export const db = getFirestore(app);
 
 function App() {
 
+
   const [loggedIn, setLoggedIn] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [user, setUser] = useState();
