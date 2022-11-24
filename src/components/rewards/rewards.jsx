@@ -95,7 +95,7 @@ export const Rewards = (props) => {
                 }
                 {
                     currentGoal < 0 &&
-                    <h4><b>All Goals Achieved</b></h4>
+                    <h4><b>All Goals Achieved!!!</b></h4>
                 }
             </div>
 
