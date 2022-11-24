@@ -60,11 +60,7 @@ export const Dashboard = (props) => {
 
     const queryApi = async () => {
         try {
-            const result = await Axios.post("https://c76c-103-177-203-246.in.ngrok.io/click", {
-                range: 400,
-                zto60: 6,
-                kithna_door: 1200
-            });
+            const result = await Axios.post("https://c76c-103-177-203-246.in.ngrok.io/click");
 
             console.log(result);
         } catch (error) {

@@ -1,1 +1,14 @@
 .notification {}
+
+.notification h3 {
+    background-color: #99A38A;
+    color: #333;
+}
+
+.notification-reward {
+    background-color: #E5E7E1;
+}
+
+.notification-reward h4 {
+    color: #92A34A;
+}
