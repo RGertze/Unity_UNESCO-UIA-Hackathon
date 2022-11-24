@@ -10,19 +10,19 @@ import { BarChartComponent } from "../bar-chart/barChart";
 //----   TEMP DATA   ----
 
 const tempData = [
-    { day: "1", solarUsage: 45, electricUsage: 12, bioFuelUsage: 20 },
-    { day: "2", solarUsage: 25, electricUsage: 13, bioFuelUsage: 0 },
-    { day: "3", solarUsage: 5, electricUsage: 19, bioFuelUsage: 30 },
-    { day: "4", solarUsage: 35, electricUsage: 23, bioFuelUsage: 9 },
-    { day: "5", solarUsage: 12, electricUsage: 29, bioFuelUsage: 10 },
-    { day: "6", solarUsage: 9, electricUsage: 13, bioFuelUsage: 39 },
-    { day: "7", solarUsage: 50, electricUsage: 30, bioFuelUsage: 10 },
-    { day: "8", solarUsage: 20, electricUsage: 41, bioFuelUsage: 0 },
-    { day: "9", solarUsage: 10, electricUsage: 44, bioFuelUsage: 0 },
-    { day: "10", solarUsage: 20, electricUsage: 28, bioFuelUsage: 14 },
-    { day: "11", solarUsage: 32, electricUsage: 37, bioFuelUsage: 24 },
-    { day: "12", solarUsage: 24, electricUsage: 10, bioFuelUsage: 20 },
-    { day: "13", solarUsage: 45, electricUsage: 30, bioFuelUsage: 34 },
+    { day: "1", solarUsage: 45, electricUsage: 12, bioFuelUsage: 20, evUsage: 10 },
+    { day: "2", solarUsage: 25, electricUsage: 13, bioFuelUsage: 0, evUsage: 10 },
+    { day: "3", solarUsage: 5, electricUsage: 19, bioFuelUsage: 30, evUsage: 10 },
+    { day: "4", solarUsage: 35, electricUsage: 23, bioFuelUsage: 9, evUsage: 10 },
+    { day: "5", solarUsage: 12, electricUsage: 29, bioFuelUsage: 10, evUsage: 10 },
+    { day: "6", solarUsage: 9, electricUsage: 13, bioFuelUsage: 39, evUsage: 10 },
+    { day: "7", solarUsage: 50, electricUsage: 30, bioFuelUsage: 10, evUsage: 10 },
+    { day: "8", solarUsage: 20, electricUsage: 41, bioFuelUsage: 0, evUsage: 10 },
+    { day: "9", solarUsage: 10, electricUsage: 44, bioFuelUsage: 0, evUsage: 10 },
+    { day: "10", solarUsage: 20, electricUsage: 28, bioFuelUsage: 14, evUsage: 10 },
+    { day: "11", solarUsage: 32, electricUsage: 37, bioFuelUsage: 24, evUsage: 10 },
+    { day: "12", solarUsage: 24, electricUsage: 10, bioFuelUsage: 20, evUsage: 10 },
+    { day: "13", solarUsage: 45, electricUsage: 30, bioFuelUsage: 34, evUsage: 10 },
 ];
 
 const tempCountryREUsage = [
