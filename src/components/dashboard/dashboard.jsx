@@ -54,7 +54,7 @@ export const Dashboard = (props) => {
 
     return (
         <div className=" dashboard">
-            <h1 style={{ width: "100%", textAlign: "center", gridColumn: "1/3" }}>Dashboard : {getUserName()}</h1>
+            <h1 style={{ width: "100%", textAlign: "center", gridColumn: "1/3", marginTop: "30px" }}>Dashboard : {getUserName()}</h1>
 
             <div className="vert-flex  dash-metrics">
                 <DashboardMetric title="Solar Energy Used" unit="kWh" value={tempData[12].solarUsage} type={M_Solar} thresholds={[15, 25]} />

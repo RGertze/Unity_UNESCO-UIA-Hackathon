@@ -55,24 +55,24 @@ export const Rewards = (props) => {
         let totalPoints = 0;
 
         if (data.solarUsage < thresholds[0][0]) {
-            totalPoints += (thresholds[0][0] - data.solarUsage) * 5;
+            totalPoints += (thresholds[0][0] - data.solarUsage) * 10;
         } else if (data.solarUsage < thresholds[0][1]) {
-            totalPoints += (thresholds[0][1] - data.solarUsage) * 2;
+            totalPoints += (thresholds[0][1] - data.solarUsage) * 5;
         }
         if (data.electricUsage < thresholds[1][0]) {
-            totalPoints += (thresholds[1][0] - data.electricUsage) * 5;
+            totalPoints += (thresholds[1][0] - data.electricUsage) * 10;
         } else if (data.electricUsage < thresholds[1][1]) {
-            totalPoints += (thresholds[1][1] - data.electricUsage) * 2;
+            totalPoints += (thresholds[1][1] - data.electricUsage) * 5;
         }
         if (data.bioFuelUsage < thresholds[2][0]) {
-            totalPoints += (thresholds[2][0] - data.bioFuelUsage) * 5;
+            totalPoints += (thresholds[2][0] - data.bioFuelUsage) * 10;
         } else if (data.bioFuelUsage < thresholds[2][1]) {
-            totalPoints += (thresholds[2][1] - data.bioFuelUsage) * 2;
+            totalPoints += (thresholds[2][1] - data.bioFuelUsage) * 5;
         }
         if (data.evUsage < thresholds[3][0]) {
-            totalPoints += (thresholds[3][0] - data.evUsage) * 5;
+            totalPoints += (thresholds[3][0] - data.evUsage) * 10;
         } else if (data.evUsage < thresholds[3][1]) {
-            totalPoints += (thresholds[3][1] - data.evUsage) * 2;
+            totalPoints += (thresholds[3][1] - data.evUsage) * 5;
         }
 
         setPoints(totalPoints);

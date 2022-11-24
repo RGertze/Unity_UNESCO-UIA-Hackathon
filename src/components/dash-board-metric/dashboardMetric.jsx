@@ -79,7 +79,8 @@ export const DashboardMetric = (props) => {
                 <div className="metric-popup-container">
                     <InfoCircle width={30} height={30} className="hover metric-popup-trigger" />
                     <div className="metric-popup border rounded p-3">
-                        <h4><b style={{ color: "#008800" }} >5</b> Points Per {props.unit} Under {props.thresholds[0]} </h4>
+                        <h4><b style={{ color: "#008800" }} >10</b> Points Per {props.unit} Under {props.thresholds[0]} </h4>
+                        <h4><b style={{ color: "#888800" }} >5</b> Points Per {props.unit} Under {props.thresholds[1]} </h4>
                         {
                             (props.value < props.thresholds[0]) &&
                             <Alert variant="success">You are in the green! Keep up the amazing work!</Alert>
