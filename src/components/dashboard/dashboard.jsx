@@ -43,6 +43,16 @@ const tempCountryREUsage = [
     { name: "Tamil Nadu", value: 60 },
 ];
 
+const tempEvSales = [
+    { name: "2015", value: 30000 },
+    { name: "2016", value: 35000 },
+    { name: "2017", value: 27000 },
+    { name: "2018", value: 25000 },
+    { name: "2019", value: 52000 },
+    { name: "2020", value: 47000 },
+    { name: "2021", value: 44000 },
+];
+
 //-----------------------------------
 
 const getUserName = () => {
@@ -82,6 +92,9 @@ export const Dashboard = (props) => {
 
                 <h3 className="p-3">Renewable percentage in states over the past 10 years:</h3>
                 <BarChartComponent width={97} data={tempCountryREUsage} />
+
+                <h3 className="p-3">Electric vehicle sales in Japan :</h3>
+                <BarChartComponent width={97} data={tempEvSales} />
             </div>
 
             <Rewards data={tempData} thresholds={thresholds} />
