@@ -73,7 +73,7 @@ export const DashboardMetric = (props) => {
     }
 
     return (
-        <div className="rounded border p-3 m-3 metric">
+        <div className="rounded border metric col-sm">
             <div className="vert-flex align-center space-evenly w-100">
                 <h2 className="rounded metric-title">{props.title} </h2>
                 <div className="metric-popup-container">

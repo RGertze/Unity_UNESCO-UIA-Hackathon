@@ -83,12 +83,13 @@ export const Dashboard = (props) => {
             <h1 style={{ width: "100%", textAlign: "center", gridColumn: "1/3", marginTop: "30px" }}>Dashboard : {getUserName()}</h1>
 
             <div className="vert-flex  dash-metrics">
+                <div class="row">
                 <DashboardMetric title="Solar Energy Used" unit="kWh" value={tempData[12].solarUsage} type={M_Solar} thresholds={[15, 25]} />
                 <DashboardMetric title="Electricity Used" unit="kWh" value={tempData[12].electricUsage} type={M_Watts} thresholds={[15, 25]} />
                 <DashboardMetric title="EV" unit="kWh" value={tempData[12].evUsage} type={EV} thresholds={[30, 40]} />
                 <DashboardMetric title="Bio Fuel Used" unit="J/kg" value={tempData[12].bioFuelUsage} type={M_Bio} thresholds={[20, 30]} />
-
-                <Chart width={97} data={tempData} />
+                </div>
+                <Chart width={97} data={tempData}  />
 
                 <h3 className="p-3">Renewable percentage in states over the past 10 years:</h3>
                 <BarChartComponent width={97} data={tempCountryREUsage} />

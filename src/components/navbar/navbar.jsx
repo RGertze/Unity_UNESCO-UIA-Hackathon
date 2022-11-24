@@ -31,6 +31,9 @@ export const NavigationBar = (props) => {
                             <Nav>
                                 <NavLink to="/achievements" as={Link} style={{ color: "black" }}>Achievements</NavLink>
                             </Nav>
+                            <Nav>
+                                <NavLink to="/MLentry" as={Link} style={{ color: "black" }}>ML</NavLink>
+                            </Nav>
                         </>
                     }
                 </Navbar.Collapse>

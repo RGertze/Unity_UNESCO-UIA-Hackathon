@@ -11,6 +11,7 @@ import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { NotificationsComponent } from './components/notifications/notifications';
+import { MLentry } from './components/MLentry/Mlentry';
 
 
 const firebaseConfig = {
@@ -58,6 +59,7 @@ function App() {
           <Route path="/home" element={<DashboardInput />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/MLentry" element={<MLentry />} />
         </Routes>
       </div>
     </BrowserRouter>
