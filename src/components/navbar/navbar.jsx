@@ -6,6 +6,7 @@ import "./navbar.css";
 
 import Logo from "./logo.jpg";
 import AppLogo from "../../assets/appLogo.png";
+import { Bell } from "react-bootstrap-icons";
 
 export const NavigationBar = (props) => {
 
@@ -33,6 +34,14 @@ export const NavigationBar = (props) => {
                         </>
                     }
                 </Navbar.Collapse>
+                {
+                    props.loggedIn &&
+                    <div className={`navbar-icons vert-flex space-evenly ${toggled && "hor-center"}`}>
+                        <Nav >
+                            <Bell style={{ width: 25, height: 25 }} onClick={() => props.showNotifications()} className={`hor-center hover`}></Bell>
+                        </Nav>
+                    </div>
+                }
                 <Navbar.Collapse className="justify-content-end">
                     <Nav >
                         {

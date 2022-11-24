@@ -69,6 +69,7 @@ export const Dashboard = (props) => {
             </div>
 
             <Rewards data={tempData} thresholds={thresholds} />
+
         </div>
     );
 }

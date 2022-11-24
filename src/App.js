@@ -10,6 +10,7 @@ import { DashboardInput } from './components/DashboardInput/DashboardInput';
 import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
+import { NotificationsComponent } from './components/notifications/notifications';
 
 
 const firebaseConfig = {
@@ -28,7 +29,7 @@ export const db = getFirestore(app);
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
-
+  const [showNotifications, setShowNotifications] = useState(false);
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -46,8 +47,10 @@ function App() {
       <div className="App">
 
         {
-          <NavigationBar loggedIn={loggedIn} logout={() => setLoggedIn(false)} />
+          <NavigationBar loggedIn={loggedIn} logout={() => setLoggedIn(false)} showNotifications={() => setShowNotifications(true)} />
         }
+
+        <NotificationsComponent show={showNotifications} hide={() => setShowNotifications(false)} />
 
         <Routes>
           <Route path="/" element={<Login login={setLoggedIn} />} />
