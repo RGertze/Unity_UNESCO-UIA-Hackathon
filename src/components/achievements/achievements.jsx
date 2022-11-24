@@ -18,19 +18,6 @@ import Like from "../../assets/Group 192.png";
 import Comment from "../../assets/Group 191.png";
 import Reply from "../../assets/Group 193.png";
 
-const _uploadImageCallBack = (file) => {
-    const imageObject = {
-        file: file,
-        localSrc: URL.createObjectURL(file),
-    }
-
-    return new Promise(
-        (resolve, reject) => {
-            resolve({ data: { link: imageObject.localSrc } });
-        }
-    );
-}
-
 export const Achievements = (props) => {
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -69,7 +56,6 @@ export const Achievements = (props) => {
         let postsToSet = [];
         allPosts.forEach(post => {
             let data = post.data();
-            console.log(`${post.id}:  ${data.__html}`);
             if (data.__html !== undefined) {
                 postsToSet.push({
                     id: post.id,
@@ -94,7 +80,6 @@ export const Achievements = (props) => {
             }
             // else add new
             else {
-                console.log(html);
                 const docRef = await addDoc(collection(db, "posts"), {
                     __html: html.__html
                 });
@@ -138,11 +123,6 @@ export const Achievements = (props) => {
                             top: 0,
                             zIndex: 1000
                         }}
-                        toolbar={{
-                            image: {
-                                uploadCallback: _uploadImageCallBack
-                            }
-                        }}
                         editorStyle={{ minHeight: "200px", maxHeight: "400px", backgroundColor: "#e9e9e9" }}
                         editorState={editorState}
                         editorClassName="border"
@@ -168,7 +148,6 @@ export const Achievements = (props) => {
             <div className='achievement-posts'>
                 {
                     posts.map((post, index) => {
-                        console.log(post);
                         return (
                             <div className="hor-center achievement" key={index} >
                                 <div className='vert-flex achievement-header'>

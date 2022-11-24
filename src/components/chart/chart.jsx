@@ -36,6 +36,7 @@ export const Chart = (props) => {
                     <Line type="monotone" dataKey="solarUsage" stroke="#8884d8" activeDot={{ r: 8 }} />
                     <Line type="monotone" dataKey="electricUsage" stroke="#82ca9d" />
                     <Line type="monotone" dataKey="bioFuelUsage" stroke="#7c8800" />
+                    <Line type="monotone" dataKey="evUsage" stroke="#ff8800" />
                 </LineChart>
             </ResponsiveContainer>
         </div>

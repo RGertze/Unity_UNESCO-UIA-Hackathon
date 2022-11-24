@@ -13,16 +13,17 @@ import "./rewards.css";
  *                      - solarUsage: number -- solar power usage value
  *                      - electricUsage: number -- electricity usage value
  *                      - bioFuelUsage: number -- bio fuel usage value
+ *                  - thresholds: [][] - array of arrays of threshold values for each energy type
  * 
  * @returns react component 
  */
 export const Rewards = (props) => {
 
-    const [points, setPoints] = useState(340);
+    const [points, setPoints] = useState(0);
     const [progress, setProgress] = useState(0);
 
     const [currentGoal, setCurrentGoal] = useState(-1);
-    const [goals, setGoals] = useState([100, 150, 200, 250, 300, 350, 400]);
+    const [goals, setGoals] = useState([50, 100, 150, 200, 250, 300, 350, 400]);
 
     /**
      * if the points change, e.g from an API call or something,
@@ -42,6 +43,40 @@ export const Rewards = (props) => {
         setCurrentGoal(newGoal);
         setProgress(newProgress);
     }, [points]);
+
+    useEffect(() => {
+        calculatePoints();
+    }, [props.data, props.thresholds]);
+
+    const calculatePoints = async () => {
+        let data = props.data[props.data.length - 1];
+        let thresholds = props.thresholds;
+
+        let totalPoints = 0;
+
+        if (data.solarUsage < thresholds[0][0]) {
+            totalPoints += (thresholds[0][0] - data.solarUsage) * 10;
+        } else if (data.solarUsage < thresholds[0][1]) {
+            totalPoints += (thresholds[0][1] - data.solarUsage) * 5;
+        }
+        if (data.electricUsage < thresholds[1][0]) {
+            totalPoints += (thresholds[1][0] - data.electricUsage) * 10;
+        } else if (data.electricUsage < thresholds[1][1]) {
+            totalPoints += (thresholds[1][1] - data.electricUsage) * 5;
+        }
+        if (data.bioFuelUsage < thresholds[2][0]) {
+            totalPoints += (thresholds[2][0] - data.bioFuelUsage) * 10;
+        } else if (data.bioFuelUsage < thresholds[2][1]) {
+            totalPoints += (thresholds[2][1] - data.bioFuelUsage) * 5;
+        }
+        if (data.evUsage < thresholds[3][0]) {
+            totalPoints += (thresholds[3][0] - data.evUsage) * 10;
+        } else if (data.evUsage < thresholds[3][1]) {
+            totalPoints += (thresholds[3][1] - data.evUsage) * 5;
+        }
+
+        setPoints(totalPoints);
+    }
 
     return (
         <div className="border rounded rewards">
