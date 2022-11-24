@@ -2,6 +2,12 @@
     width: 100%;
     min-height: 600px;
     margin-top: 15px;
+    background-color: #CBD0C3;
+}
+
+.reward-progress {
+    width: fit-content;
+    background-color: #E5E7E1;
 }
 
 .reward-goals {

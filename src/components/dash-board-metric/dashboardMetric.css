@@ -4,11 +4,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #E5E7E1;
+    border-radius: 25px;
+
+}
+
+.metric-title {
+    background-color: #99A38A;
+    min-width: 70%;
+    padding: 10px;
+    color: white;
 }
 
 .metric-img {
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
     margin: 10px;
 }
 

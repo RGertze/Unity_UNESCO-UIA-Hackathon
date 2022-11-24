@@ -17,7 +17,7 @@ import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, X
  */
 export const Chart = (props) => {
     return (
-        <div style={{ width: `${props.width}%` }}>
+        <div style={{ width: `${props.width}%`, backgroundColor: "" }}>
             <ResponsiveContainer minWidth={500} minHeight={500} width="100%" height="100%">
                 <LineChart
                     width={500}
